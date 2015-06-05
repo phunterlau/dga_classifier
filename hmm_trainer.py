@@ -1,7 +1,7 @@
 from collections	import defaultdict
 
 # get a list of words with only ASCII characters
-words = [w.strip().lower() for w in open("hmm/alexa_100k.txt").readlines()]
+words = [w.strip().lower() for w in open("alexa_100k.txt").readlines()]
 #words = [w for w in words if all([c in ascii_lowercase for c in w])]
 words = ["^" + w.split('/')[0] + "$" for w in words if w != ""]
 

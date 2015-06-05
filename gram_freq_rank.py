@@ -50,10 +50,19 @@ fi.close()
 
 fw = open('n_gram_rank_freq.txt','w')
 for rank,(i,freq)in enumerate(sorted(unigram_rank.iteritems(), key = lambda x:x[1], reverse = True)):
-    fw.write('1,%s,%d,%d\n'%(i,freq,rank+1))
+    try:
+        fw.write('1,%s,%d,%d\n'%(i,freq,rank+1))
+    except UnicodeEncodeError:
+        continue
 for rank,(i,freq) in enumerate(sorted(bigram_rank.iteritems(),key = lambda x:x[1], reverse = True)):
-    fw.write('2,%s,%d,%d\n'%(i,freq,rank+1))
+    try:
+        fw.write('2,%s,%d,%d\n'%(i,freq,rank+1))
+    except UnicodeEncodeError:
+        continue
 for rank,(i,freq) in enumerate(sorted(trigram_rank.iteritems(),key = lambda x:x[1], reverse = True)):
-    fw.write('3,%s,%d,%d\n'%(i,freq,rank+1))
+    try:
+        fw.write('3,%s,%d,%d\n'%(i,freq,rank+1))
+    except UnicodeEncodeError:
+        continue
 
 fw.close()

@@ -179,13 +179,16 @@ for f in fi:
 
     #advanced linguistic feature: pronouncable domain
     gib_value = int(gib_detect_train.avg_transition_prob(main_domain.strip('$'), model_mat) > threshold)
-    fw.write('%s\t%s\t%s\t%.3f\t%.1f\t%.3f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%d\n'
-            %(domain,cla,tld,entropy,f_len,entropy/f_len,vowel_ratio,
-            digit_ratio,repeat_letter,consec_digit,consec_consonant,gib_value,hmm_log_prob,
-            ave(unigram_rank),ave(bigram_rank),ave(trigram_rank),
-            std(unigram_rank),std(bigram_rank),std(trigram_rank),
-            has_private_tld)
-            )
+    try:
+        fw.write('%s\t%s\t%s\t%.3f\t%.1f\t%.3f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%d\n'
+                %(domain,cla,tld,entropy,f_len,entropy/f_len,vowel_ratio,
+                digit_ratio,repeat_letter,consec_digit,consec_consonant,gib_value,hmm_log_prob,
+                ave(unigram_rank),ave(bigram_rank),ave(trigram_rank),
+                std(unigram_rank),std(bigram_rank),std(trigram_rank),
+                has_private_tld)
+                )
+    except UnicodeEncodeError:
+        continue
     #fw.write('%s\t%s\t%s\t%.3f\t%.1f\t%.3f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\n'
     #        %(domain,cla,tld,entropy,f_len,entropy/f_len,unigram_rank.mean(),bigram_rank.mean(),trigram_rank.mean(),
     #        unigram_rank.std(),bigram_rank.std(),trigram_rank.std()))
