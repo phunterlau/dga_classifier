@@ -15,7 +15,7 @@ for f in fi:
     feat_dict = dict()
     feature_header = header
     for f in feature_header:
-        if f in ['','ip','class']: continue
+        if f in ['','ip','class','private_tld']: continue
         feat = ll[header_dict[f]]
         if not f=='tld': feat=float(feat)
         else: feat=feat.lower()
